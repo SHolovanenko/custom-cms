@@ -17,6 +17,7 @@ class CreatePostsTable extends Migration
             $table->id();
             $table->unsignedBigInteger('category_id');
             $table->unsignedBigInteger('creator_id');
+            $table->string('title');
             $table->string('alias')->unique();
             $table->text('content');
             $table->boolean('is_published')->default(false);

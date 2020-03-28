@@ -1,5 +1,7 @@
 <?php
 
+use App\Models\Category;
+use App\Models\Post;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -18,4 +20,16 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::get('/', 'MainController@index');
+/*
+Route::bind('category', function ($slug) {
+    return Category::published()->whereSlug($slug)->firstOrFail();
+});
+
+Route::bind('post', function ($slug) {
+    return Post::published()->whereSlug($slug)->firstOrFail();
+});
+*/
+
+Route::get('/', 'MainController@getHome');
+Route::get('/{category}', 'MainController@getListPosts');
+Route::get('/{category}/{post}', 'MainController@getPost');
