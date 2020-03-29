@@ -11,13 +11,13 @@ use Illuminate\Support\Collection;
 class StructureService
 {
     const PAGE_POST = 'post';
-    const PAGE_CATEGORY = 'category_news';
+    const PAGE_CATEGORY = 'category';
     const PAGE_HOME = 'home';
 
     const CONTENT_TYPE_MENU = 'menu';
     const CONTENT_TYPE_POST = 'post';
-    const CONTENT_TYPE_LIST_POSTS = 'list_posts';
-    const CONTENT_TYPE_LIST_CATEGORIES = 'list_categories';
+    const CONTENT_TYPE_LIST_POSTS = 'list-posts';
+    const CONTENT_TYPE_LIST_CATEGORIES = 'list-categories';
     
     /** @var ZoneRepository */
     private $zoneRepository;

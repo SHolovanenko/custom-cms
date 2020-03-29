@@ -19,7 +19,7 @@ class PageSeeder extends Seeder
                 'created_at' => Carbon::now()
             ],
             [
-                'name' => 'category_news',
+                'name' => 'category',
                 'created_at' => Carbon::now()
             ],
             [
