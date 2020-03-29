@@ -46,7 +46,7 @@ class PageZonesSeeder extends Seeder
                 'created_at' => Carbon::now()
             ],
             [
-                'page_id' => DB::table('pages')->where('name', '=', 'home')->value('id'),
+                'page_id' => DB::table('pages')->where('name', '=', 'category_news')->value('id'),
                 'zone_id' =>  DB::table('zones')->where('name', '=', 'middle-left')->value('id'),
                 'content_type' => 'menu',
                 'content_id' => DB::table('menus')->where('name', '=', 'side')->value('id'),
@@ -55,14 +55,14 @@ class PageZonesSeeder extends Seeder
 
             //post page
             [
-                'page_id' => DB::table('pages')->where('name', '=', 'home')->value('id'),
+                'page_id' => DB::table('pages')->where('name', '=', 'post')->value('id'),
                 'zone_id' =>  DB::table('zones')->where('name', '=', 'top')->value('id'),
                 'content_type' => 'menu',
                 'content_id' => DB::table('menus')->where('name', '=', 'main')->value('id'),
                 'created_at' => Carbon::now()
             ],
             [
-                'page_id' => DB::table('pages')->where('name', '=', 'home')->value('id'),
+                'page_id' => DB::table('pages')->where('name', '=', 'post')->value('id'),
                 'zone_id' =>  DB::table('zones')->where('name', '=', 'middle-top')->value('id'),
                 'content_type' => 'post',
                 'content_id' => DB::table('menus')->where('name', '=', 'main')->value('id'),
