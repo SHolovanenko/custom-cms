@@ -30,6 +30,6 @@ Route::bind('post', function ($slug) {
 });
 */
 
-Route::get('/', 'MainController@getHome');
-Route::get('/{category}', 'MainController@getListPosts');
-Route::get('/{category}/{post}', 'MainController@getPost');
+Route::get('/structure', 'StructureController@index');
+Route::get('/structure/{category}', 'StructureController@index');
+Route::get('/structure/{category}/{post}', 'StructureController@index');
