@@ -15,14 +15,14 @@ class StructureController extends Controller
     }
 
     /**
-     * Display a listing of the resource.
+     * Get structure of page by passed params
      *
      * @return \Illuminate\Http\Response
      */
     public function index($category = null, $post = null)
     {
         $result = $this->structureService->preparePageData($category, $post);
-        
+
         return response()->json($result);
     }
 

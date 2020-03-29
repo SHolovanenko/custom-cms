@@ -30,6 +30,5 @@ Route::bind('post', function ($slug) {
 });
 */
 
-Route::get('/structure', 'StructureController@index');
-Route::get('/structure/{category}', 'StructureController@index');
-Route::get('/structure/{category}/{post}', 'StructureController@index');
+Route::get('/structure/{category?}/{post?}', 'StructureController@index');
+Route::get('/content/{contentType}/{id}', 'ContentController@index');

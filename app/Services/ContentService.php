@@ -8,11 +8,12 @@ use App\Repositories\PostRepository;
 use App\Repositories\ZoneRepository;
 use Illuminate\Support\Collection;
 
-class StructureService
+class ContentService
 {
-    const PAGE_POST = 'post';
-    const PAGE_CATEGORY = 'category';
-    const PAGE_HOME = 'home';
+    const CONTENT_TYPE_MENU = 'menu';
+    const CONTENT_TYPE_POST = 'post';
+    const CONTENT_TYPE_LIST_POSTS = 'list-posts';
+    const CONTENT_TYPE_LIST_CATEGORIES = 'list-categories';
     
     /** @var ZoneRepository */
     private $zoneRepository;
@@ -68,33 +69,33 @@ class StructureService
      * 
      * @return Collection 
      */
-    public function preparePageData($category = null, $post = null) {
-        $zones = $this->prepareZonesData($category, $post);
+    public function prepareContent($contentType, $id) {
+        $content = null;
+        
+        switch ($contentType) {
+            case self::CONTENT_TYPE_MENU:
+                $content = $this->MenuRepository()->find($id);
+                break;
 
-        return $zones;
-    }
-
-    /**
-     * @return Collection
-     */
-    public function prepareZonesData($category, $post) {
-        $zones = [];
-
-        if ($post) {
-
-            $zones = $this->ZoneRepository()->getZonesByPage(self::PAGE_POST);
-
-        } else if ($category) {
-
-            $zones = $this->ZoneRepository()->getZonesByPage(self::PAGE_CATEGORY);
-
-        } else {
-
-            $zones = $this->ZoneRepository()->getZonesByPage(self::PAGE_HOME);
-
+            case self::CONTENT_TYPE_POST:
+                $content = $this->PostRepository()->find($id);
+                break;
+                
+            case self::CONTENT_TYPE_LIST_POSTS:
+                $categoriesIds = $this->CategoryRepository()->getNestedCategories($id);
+                $content = $this->PostRepository()->getListPostsByCategoryIds($categoriesIds);
+                break;
+                
+            case self::CONTENT_TYPE_LIST_CATEGORIES:
+                $content = $this->CategoryRepository()->getNestedCategories($id, true);
+                break;
+            
+            default:
+                //TODO throw Exception "not implemented yet"
+                break;
         }
 
-        return $zones;
+        return $content;
     }
 
 }
